@@ -1,0 +1,55 @@
+# laravel-blog-app — E2E Tests
+
+E2E tests for [laravelblogapplication.vercel.app](https://laravelblogapplication.vercel.app/), a Laravel blog app I built and deployed.
+
+## Scope
+
+`Posts`, `Products`, and `Register` are currently work-in-progress placeholder pages on the site itself. Instead of faking flows that don't exist yet, this suite covers:
+
+- Navigation and smoke checks
+- Language switching (EN / DE / RU)
+- Light/dark theme toggle
+- Login form rendering and client-side (HTML5) validation
+- Placeholder pages rendering correctly instead of erroring out
+
+`tests/login.spec.ts` has a `test.skip` placeholder for the full authenticated-login flow, to enable once a seeded test account exists.
+
+## Structure
+
+```
+laravel-blog-app/
+├── pages/              # Page Object Model
+│   ├── BasePage.ts
+│   ├── HomePage.ts
+│   └── LoginPage.ts
+├── tests/
+│   ├── navigation.spec.ts
+│   ├── i18n.spec.ts
+│   ├── theme.spec.ts
+│   ├── login.spec.ts
+│   └── placeholder-pages.spec.ts
+└── playwright.config.ts
+```
+
+## Setup
+
+```bash
+npm install
+npx playwright install --with-deps
+```
+
+## Run
+
+```bash
+npm test              # headless, all browsers
+npm run test:headed   # watch it run
+npm run test:ui       # interactive UI mode
+npm run report        # open last HTML report
+```
+
+## Roadmap
+
+- [ ] Enable full login flow once a test account exists
+- [ ] Add Posts/Products tests once those features ship
+- [ ] Allure reporting
+- [ ] k6 performance tests against the Laravel API
